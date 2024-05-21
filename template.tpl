@@ -659,7 +659,7 @@ const getType = require('getType');	// https://developers.google.com/tag-manager
 // -------- Getting Data
 const inputData = data.objectData || data.arrayObjectData || data.arrayData || data.extractProperty || data.arrayArrayData || null;
 const fromData = data.convertTargetVariableAO || data.extractFrom || data.convertTargetVariableAA || false;
-if(fromData && (getType(fromData) !== 'object' && getType(fromData) !== 'array')) return false;	// Error case
+if((fromData && (getType(fromData) !== 'object' && getType(fromData) !== 'array')) || !fromData) return false;	// Error case
 const thisType = (data.extract) ? 'extract' : data.thisType;
 let option = {
 	'nonValue': data.noneValueSetting4AX || data.noneValueSetting4Single || 'none',
@@ -907,10 +907,10 @@ scenarios:
 - name: Array - Extract
   code: "const mockData = {\n\tthisType: 'array',\n\textract: true,\n\textractFrom:\
     \ fromDataA,\n\textractProperty: 'aaa',\n\t//noneValueSetting4Single: 'none'\n\
-    \tnoneValueSetting4Single: 'ignore'\n\t, defaultValue4Single: 'undefine'\n\t//noneValueSetting4Single:\
-    \ 'convert'\n\t//, convertString4Single: 'abc'\n};\n\n// Call runCode to run the\
-    \ template's code.\nlet variableResult = runCode(mockData);\n\n// Verify that\
-    \ the variable returns a result.\nassertThat(variableResult).isNotEqualTo(undefined);"
+    \tnoneValueSetting4Single: 'ignore'\n\t//,defaultValue4Single: 'undefine'\n\t\
+    //noneValueSetting4Single: 'convert'\n\t//, convertString4Single: 'abc'\n};\n\n\
+    // Call runCode to run the template's code.\nlet variableResult = runCode(mockData);\n\
+    \n// Verify that the variable returns a result.\nassertThat(variableResult).isNotEqualTo(undefined);"
 - name: Array + Array
   code: "const mockData = {\n\tthisType: 'arrayArray',\n\tconvertTargetVariableAA:\
     \ fromDataA,\n\tarrayArrayData: [{\n    \t'value': ''\n    },{\n    \t'value':\
@@ -920,6 +920,15 @@ scenarios:
     \t//, limitArrayAA:true,\n\t//limitNumberAA: 2\n};\n\n// Call runCode to run the\
     \ template's code.\nlet variableResult = runCode(mockData);\n\n// Verify that\
     \ the variable returns a result.\nassertThat(variableResult).isNotEqualTo(undefined);"
+- name: Untitled test 6
+  code: "const mockData = {\n\tthisType: 'arrayObject',\n\tarrayObjectData: [{\n\t\
+    \t'key': 'test1',\n\t\t'value': 'aaa'\n\t},{\n\t\t'key': 'test3',\n\t\t'value':\
+    \ 'ccc'\n\t}],\n\t//arrayObjectData: [{}],\n\t//noneValueSetting4AX: 'none'\n\t\
+    noneValueSetting4AX: 'ignore'\n\t//, defaultValue4AX: 'none'\n\t//, defaultValue4AX:\
+    \ 'undefine'\n\t//noneValueSetting4AX: 'string'\n\t//noneValueSetting4AX: 'convert'\n\
+    \t//, convertString4AX: 'abc'\n\t//, convertString4AX: ''\n\t//, limitArrayAO:true,\n\
+    \t//limitNumberAO: 2\n};\n\n// Call runCode to run the template's code.\nlet variableResult\
+    \ = runCode(mockData);\n\n// Verify that the variable returns a result.\nassertThat(variableResult).isNotEqualTo(undefined);"
 setup: "const fromDataA = [{\n\t\t'aaa': '1のデータa',\n\t\t'bbb': '1のデータb'\n\t},{\n\t\
   \t'aaa': '2のデータa',\n\t\t'bbb': '2のデータb',\n\t\t'ccc': '2のデータc'\n\t},{\n\t\t'aaa':\
   \ '3のデータa',\n\t\t'bbb': '3のデータb'\n\t},{\n\t\t'aaa': '4のデータa',\n\t\t'bbb': '4のデータ\
