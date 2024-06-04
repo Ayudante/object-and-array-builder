@@ -16,8 +16,10 @@ homepage: "https://ayudante.jp/"
 documentation: "https://ayudante.jp/column/2020-02-21/11-00/"
 versions:
   # Latest version
-  - sha: 502bd719dec3b615a01ce7275fd63055d8cdec97
+  - sha: 23775fe82bfa17c13214e27181454362466fa529
     changeNotes: Bug fixed.
   # Older versions
+  - sha: 502bd719dec3b615a01ce7275fd63055d8cdec97
+    changeNotes: Bug fixed.
   - sha: dde8539142e7e00648abbdd99f31434a4a4ba3ea
     changeNotes: Initial release.
