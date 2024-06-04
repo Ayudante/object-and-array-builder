@@ -659,7 +659,7 @@ const getType = require('getType');	// https://developers.google.com/tag-manager
 // -------- Getting Data
 const inputData = data.objectData || data.arrayObjectData || data.arrayData || data.extractProperty || data.arrayArrayData || null;
 const fromData = data.convertTargetVariableAO || data.extractFrom || data.convertTargetVariableAA || false;
-if((fromData && (getType(fromData) !== 'object' && getType(fromData) !== 'array')) || !fromData) return false;	// Error case
+if((fromData && (getType(fromData) !== 'object' && getType(fromData) !== 'array')) || (!fromData && data.thisType !== 'array' && data.thisType !== 'object')) return false;	// Error case
 const thisType = (data.extract) ? 'extract' : data.thisType;
 let option = {
 	'nonValue': data.noneValueSetting4AX || data.noneValueSetting4Single || 'none',
