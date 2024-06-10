@@ -28,6 +28,10 @@ Useful when:
 - You want to use data as a parameter with a different name, such as a different ad tag, on a page where the data has already been output for another use.
 
 ## Editing history
+### [2024/06/04 (Update)] Ayudante, Inc.
+- Bug fixed.
+  - Fixed a problem in which values were not generated correctly when "Array" or "Object" was selected.
+
 ### [2024/05/21 (Update)] Ayudante, Inc.
 - Bug fixed.
   - Fixed a bug that caused an error if the target variable did not exist when "Array + Object" or "Array + Array" was selected.
